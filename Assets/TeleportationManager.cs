@@ -109,7 +109,7 @@ public class TeleportationManager : MonoBehaviour
     private void OnTeleportActivate(InputAction.CallbackContext context)
     {
         // Run this when the trigger is pressed
-        if (_thumbstick.IsPressed())
+        if (_thumbstick.IsPressed() && _readyToTeleport)
         {
             _isTeleporting = true;
         }

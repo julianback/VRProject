@@ -1735,6 +1735,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8604691383457356503, guid: 893219773891c784ab469a39151879b4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.27059805
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604691383457356503, guid: 893219773891c784ab469a39151879b4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.27059805
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604691383457356503, guid: 893219773891c784ab469a39151879b4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6532815
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604691383457356503, guid: 893219773891c784ab469a39151879b4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.6532815
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604691383457356503, guid: 893219773891c784ab469a39151879b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 8748868027195207512, guid: 893219773891c784ab469a39151879b4,
         type: 3}
       propertyPath: m_Name
@@ -1903,12 +1928,44 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &1992777004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8748868027195207512, guid: 893219773891c784ab469a39151879b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1573263241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1992777005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8568544637412148623, guid: 893219773891c784ab469a39151879b4,
     type: 3}
   m_PrefabInstance: {fileID: 1573263241}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1992777006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992777004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1e6e2a603e2dd44a9e35247d6a06ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thumbstick:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Thumbstick
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 17e6d43b-f156-4fa3-af79-991cb6714c68
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  _rayInteractor: {fileID: 819405396}
 --- !u!1 &2051581870
 GameObject:
   m_ObjectHideFlags: 0
