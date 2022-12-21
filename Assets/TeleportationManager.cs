@@ -10,15 +10,15 @@ public class TeleportationManager : MonoBehaviour
 {
     [SerializeField] private InputActionAsset actionAsset;
     [SerializeField] private XRRayInteractor rayInteractor;
-    // [SerializeField] private GameObject reticle;
+    [SerializeField] private GameObject reticle;
     [SerializeField] private TeleportationProvider teleportationProvider;
 
     private InputAction _thumbstick;
     private InputAction _trigger;
     private InputAction _grip;
 
-    private bool _readyToTeleport;
-    private bool _isTeleporting;
+    private bool _readyToTeleport; // true when the thumbstick has been returned to centre
+    private bool _isTeleporting;   // true when the user presses the trigger
 
     // Start is called before the first frame update
     void Start()
@@ -126,6 +126,6 @@ public class TeleportationManager : MonoBehaviour
     void TurnOffRay()
     {
         rayInteractor.enabled = false;
-        // reticle.SetActive(false);
+        reticle.SetActive(false);
     }
 }
