@@ -8,10 +8,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class TeleportationManager : MonoBehaviour
 {
-    [SerializeField] private InputActionAsset actionAsset;
-    [SerializeField] private XRRayInteractor rayInteractor;
-    [SerializeField] private GameObject reticle;
-    [SerializeField] private TeleportationProvider teleportationProvider;
+    [SerializeField] private InputActionAsset _actionAsset;
+    [SerializeField] private XRRayInteractor _rayInteractor;
+    [SerializeField] private GameObject _reticle;
+    [SerializeField] private TeleportationProvider _teleportationProvider;
 
     private InputAction _thumbstick;
     private InputAction _trigger;
@@ -31,20 +31,20 @@ public class TeleportationManager : MonoBehaviour
         _readyToTeleport = true;
 
         // activate
-        _trigger = actionAsset.FindActionMap("XRI LeftHand Interaction").FindAction("Activate");
+        _trigger = _actionAsset.FindActionMap("XRI LeftHand Interaction").FindAction("Activate");
         _trigger.Enable();
         _trigger.performed += OnTeleportActivate;
 
         // cancel
-        _grip = actionAsset.FindActionMap("XRI LeftHand Locomotion").FindAction("Teleport Mode Cancel");
+        _grip = _actionAsset.FindActionMap("XRI LeftHand Locomotion").FindAction("Teleport Mode Cancel");
         _grip.Enable();
         _grip.performed += OnTeleportCancel;
 
         // select
-        _thumbstick = actionAsset.FindActionMap("XRI LeftHand Locomotion").FindAction("Move");
+        _thumbstick = _actionAsset.FindActionMap("XRI LeftHand Locomotion").FindAction("Move");
         _thumbstick.Enable();
 
-        _reticlePrefab = reticle.transform.Find("Directional Teleport Reticle");
+        _reticlePrefab = _reticle.transform.Find("Directional Teleport Reticle");
         if (_reticlePrefab == null)
         {
             Debug.LogError("Directional Teleport Reticle not found");
@@ -59,7 +59,6 @@ public class TeleportationManager : MonoBehaviour
 
         /*
         TODO
-        rotate player to reticle when teleporting
         add invalid teleportation reticle
         make this ^^ rotate when invalid
         add continuous movement
@@ -94,7 +93,7 @@ public class TeleportationManager : MonoBehaviour
         }
 
         // The thumbstick is pressed and we are ready to teleport
-        rayInteractor.enabled = true;
+        _rayInteractor.enabled = true;
 
         if (!_isTeleporting)
         {
@@ -103,7 +102,7 @@ public class TeleportationManager : MonoBehaviour
         }
 
         // The trigger has been pressed. Check if the destination is valid
-        if (rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
+        if (_rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
         {
             // TODO Check if the hit has a teleportation anchor component and if so, rotate to that. otherwise, rotate to the reticle
             // TODO check if this can be moved out of if statement
@@ -117,7 +116,7 @@ public class TeleportationManager : MonoBehaviour
                 destinationRotation = newRotation,
                 matchOrientation = MatchOrientation.TargetUpAndForward
             };
-            teleportationProvider.QueueTeleportRequest(request);
+            _teleportationProvider.QueueTeleportRequest(request);
         }
         _isTeleporting = false;
     }
@@ -141,7 +140,7 @@ public class TeleportationManager : MonoBehaviour
 
     void TurnOffRay()
     {
-        rayInteractor.enabled = false;
-        reticle.SetActive(false);
+        _rayInteractor.enabled = false;
+        _reticle.SetActive(false);
     }
 }

@@ -2085,11 +2085,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13eb779b048008148b9ee6fa19160468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+  _actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  rayInteractor: {fileID: 819405396}
-  reticle: {fileID: 466642466}
-  teleportationProvider: {fileID: 2051581873}
+  _rayInteractor: {fileID: 819405396}
+  _reticle: {fileID: 466642466}
+  _teleportationProvider: {fileID: 2051581873}
 --- !u!1 &2146013294
 GameObject:
   m_ObjectHideFlags: 0
