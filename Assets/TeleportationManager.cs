@@ -20,6 +20,8 @@ public class TeleportationManager : MonoBehaviour
     private bool _readyToTeleport; // true when the thumbstick has been returned to centre
     private bool _isTeleporting;   // true when the user presses the trigger
 
+    private Transform _reticlePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,16 +44,11 @@ public class TeleportationManager : MonoBehaviour
         _thumbstick = actionAsset.FindActionMap("XRI LeftHand Locomotion").FindAction("Move");
         _thumbstick.Enable();
 
-        /*
-        _meshTransform = reticle.transform.Find("Mesh");
-        if (_meshTransform == null)
+        _reticlePrefab = reticle.transform.Find("Directional Teleport Reticle");
+        if (_reticlePrefab == null)
         {
-            Debug.LogError("Mesh object not found");
+            Debug.LogError("Directional Teleport Reticle not found");
         }
-        */
-
-
-
 
         // push the thumbstick forward to show the line
         // press the trigger to teleport
@@ -59,6 +56,21 @@ public class TeleportationManager : MonoBehaviour
         // release the thumbstick to cancel
         // keep the line out between teleports
         // if cancelled, release the thumbstick to start again
+
+        /*
+        TODO
+        rotate player to reticle when teleporting
+        add invalid teleportation reticle
+        make this ^^ rotate when invalid
+        add continuous movement
+        add continuous turn
+        add menu
+        add option to select either continuous turn or snap turn
+        add option to select either teleportation or continuous movement
+        add option for left or right handed controls (right handed we teleport with the left and turn with the right, and vice versa)
+        make README.md and explain teleportation and controls
+        tags for anchor and free telesport areas
+        */
     }
 
     // Update is called once per frame
@@ -83,7 +95,6 @@ public class TeleportationManager : MonoBehaviour
 
         // The thumbstick is pressed and we are ready to teleport
         rayInteractor.enabled = true;
-        // Debug.Log("reticle eulr ang:" + _meshTransform.rotation.eulerAngles);
 
         if (!_isTeleporting)
         {
@@ -94,12 +105,17 @@ public class TeleportationManager : MonoBehaviour
         // The trigger has been pressed. Check if the destination is valid
         if (rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
         {
-            // Check if the hit has a teleportation anchor component and if so, rotate to that. otherwise, rotate to the reticle
+            // TODO Check if the hit has a teleportation anchor component and if so, rotate to that. otherwise, rotate to the reticle
+            // TODO check if this can be moved out of if statement
+
+            Quaternion newRotation = new Quaternion();
+            newRotation.eulerAngles = new Vector3(0, _reticlePrefab.rotation.eulerAngles.y, 0);
+
             TeleportRequest request = new()
             {
                 destinationPosition = hit.point,
-                // destinationRotation = new Quaternion(0, _meshTransform.rotation.y, 0, 0),
-                // matchOrientation = MatchOrientation.TargetUpAndForward
+                destinationRotation = newRotation,
+                matchOrientation = MatchOrientation.TargetUpAndForward
             };
             teleportationProvider.QueueTeleportRequest(request);
         }

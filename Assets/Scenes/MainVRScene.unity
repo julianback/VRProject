@@ -1062,7 +1062,8 @@ MonoBehaviour:
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 466642466}
-  m_BlockedReticle: {fileID: 0}
+  m_BlockedReticle: {fileID: 3177232254315139758, guid: a3fde713df4d99042a0403c4be9eea32,
+    type: 3}
   m_StopLineAtFirstRaycastHit: 1
   m_StopLineAtSelection: 0
 --- !u!120 &819405395
@@ -1708,17 +1709,17 @@ PrefabInstance:
     - target: {fileID: 8568544637412148623, guid: 893219773891c784ab469a39151879b4,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8568544637412148623, guid: 893219773891c784ab469a39151879b4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8568544637412148623, guid: 893219773891c784ab469a39151879b4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8568544637412148623, guid: 893219773891c784ab469a39151879b4,
         type: 3}
