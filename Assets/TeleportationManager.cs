@@ -101,24 +101,27 @@ public class TeleportationManager : MonoBehaviour
             return;
         }
 
+        _isTeleporting = false; // We've pressed the button. Either we succeed or fail
+
         // The trigger has been pressed. Check if the destination is valid
-        if (_rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
+        if (!_rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
         {
-            // TODO Check if the hit has a teleportation anchor component and if so, rotate to that. otherwise, rotate to the reticle
-            // TODO check if this can be moved out of if statement
-
-            Quaternion newRotation = new Quaternion();
-            newRotation.eulerAngles = new Vector3(0, _reticlePrefab.rotation.eulerAngles.y, 0);
-
-            TeleportRequest request = new()
-            {
-                destinationPosition = hit.point,
-                destinationRotation = newRotation,
-                matchOrientation = MatchOrientation.TargetUpAndForward
-            };
-            _teleportationProvider.QueueTeleportRequest(request);
+            return;
         }
-        _isTeleporting = false;
+
+        // TODO Check if the hit has a teleportation anchor component and if so, rotate to that. otherwise, rotate to the reticle
+        // TODO check if this can be moved out of if statement
+
+        Quaternion newRotation = new Quaternion();
+        newRotation.eulerAngles = new Vector3(0, _reticlePrefab.rotation.eulerAngles.y, 0);
+
+        TeleportRequest request = new()
+        {
+            destinationPosition = hit.point,
+            destinationRotation = newRotation,
+            matchOrientation = MatchOrientation.TargetUpAndForward
+        };
+        _teleportationProvider.QueueTeleportRequest(request);
     }
 
     private void OnTeleportActivate(InputAction.CallbackContext context)
