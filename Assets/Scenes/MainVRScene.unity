@@ -1062,8 +1062,7 @@ MonoBehaviour:
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 466642466}
-  m_BlockedReticle: {fileID: 3177232254315139758, guid: a3fde713df4d99042a0403c4be9eea32,
-    type: 3}
+  m_BlockedReticle: {fileID: 0}
   m_StopLineAtFirstRaycastHit: 1
   m_StopLineAtSelection: 0
 --- !u!120 &819405395
@@ -1485,7 +1484,7 @@ PrefabInstance:
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.96269244
+      value: -0.123
       objectReference: {fileID: 0}
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
@@ -1495,7 +1494,7 @@ PrefabInstance:
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.8955089
+      value: 1.674
       objectReference: {fileID: 0}
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
@@ -1545,7 +1544,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1000832378}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1190258685
+--- !u!114 &1190258687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

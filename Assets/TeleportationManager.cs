@@ -104,7 +104,7 @@ public class TeleportationManager : MonoBehaviour
         _isTeleporting = false; // We've pressed the button. Either we succeed or fail
 
         // The trigger has been pressed. Check if the destination is valid
-        if (!_rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
+        if (!_rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit) || !hit.collider.CompareTag("TeleportArea"))
         {
             return;
         }
