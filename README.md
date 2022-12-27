@@ -1,6 +1,6 @@
 # VRProject
 
-## TODO
+### TODO
 add invalid teleportation reticle  
 make this ^^ rotate when invalid  
 add option for left or right handed controls (right handed we teleport with the left and turn with the right, and vice versa)  
