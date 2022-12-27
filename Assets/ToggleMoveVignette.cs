@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,25 +5,24 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ToggleMoveVignette : MonoBehaviour
 {
-    // Continuous move
     [SerializeField] private GameObject _vignette;
-    private List<LocomotionVignetteProvider> _continuousMoveProviders;
-
-    // Teleport move
-    //[SerializeField] private GameObject _teleportVignette;
-    //private List<LocomotionVignetteProvider> _teleportMoveProviders;
+    private List<LocomotionVignetteProvider> _locomotionMoveProviders;
 
     // Start is called before the first frame update
     void Start()
     {
-        _continuousMoveProviders = _vignette.GetComponent<TunnelingVignetteController>().locomotionVignetteProviders;
+        _locomotionMoveProviders = _vignette.GetComponent<TunnelingVignetteController>().locomotionVignetteProviders;
     }
 
     public void SetMoveVignetteFromState(bool state)
     {
-        foreach (var provider in _continuousMoveProviders)
+        foreach (var provider in _locomotionMoveProviders)
         {
             if (provider.locomotionProvider.ToString().Contains("ActionBasedContinuousMoveProvider"))
+            {
+                provider.enabled = state;
+            }
+            else if (provider.locomotionProvider.ToString().Contains("TeleportationProvider"))
             {
                 provider.enabled = state;
             }
