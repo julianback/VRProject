@@ -22,6 +22,15 @@ public class TeleportationManager : MonoBehaviour
 
     private Transform _reticlePrefab;
 
+    /*
+     * push the thumbstick forward to show the line
+     * press the trigger to teleport
+     * press the grip to cancel
+     * release the thumbstick to cancel
+     * keep the line out between teleports
+     * if cancelled, release the thumbstick to start again
+    */
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,29 +58,6 @@ public class TeleportationManager : MonoBehaviour
         {
             Debug.LogError("Directional Teleport Reticle not found");
         }
-
-        // push the thumbstick forward to show the line
-        // press the trigger to teleport
-        // press the grip to cancel
-        // release the thumbstick to cancel
-        // keep the line out between teleports
-        // if cancelled, release the thumbstick to start again
-
-        /*
-        TODO
-        add invalid teleportation reticle
-        make this ^^ rotate when invalid
-        add option for left or right handed controls (right handed we teleport with the left and turn with the right, and vice versa)
-        make README.md and explain teleportation and controls
-        tags for anchor and free telesport areas
-        add hands
-        add grip and trigger animation for hands
-        add guns and shooting
-        add interactables
-        add draws and advance physics interactions
-        add game menu with options (turning, movement, vignette)
-        add radial wrist menu with weapons
-        */
     }
 
     // Update is called once per frame
@@ -112,8 +98,6 @@ public class TeleportationManager : MonoBehaviour
         }
 
         // TODO Check if the hit has a teleportation anchor component and if so, rotate to that. otherwise, rotate to the reticle
-        // TODO check if this can be moved out of if statement
-
         Quaternion newRotation = new Quaternion();
         newRotation.eulerAngles = new Vector3(0, _reticlePrefab.rotation.eulerAngles.y, 0);
 
