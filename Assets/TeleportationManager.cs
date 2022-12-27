@@ -61,11 +61,6 @@ public class TeleportationManager : MonoBehaviour
         TODO
         add invalid teleportation reticle
         make this ^^ rotate when invalid
-        add continuous movement
-        add continuous turn
-        add menu
-        add option to select either continuous turn or snap turn
-        add option to select either teleportation or continuous movement
         add option for left or right handed controls (right handed we teleport with the left and turn with the right, and vice versa)
         make README.md and explain teleportation and controls
         tags for anchor and free telesport areas
