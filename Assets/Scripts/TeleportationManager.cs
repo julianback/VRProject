@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
@@ -97,7 +98,7 @@ public class TeleportationManager : MonoBehaviour
         }
 
         // Check if the hit is on a teleport area
-        if (!hit.collider.CompareTag("TeleportArea")) // || "TeleportAnchor"
+        if (!hit.collider.CompareTag("TeleportArea") && !hit.collider.CompareTag("TeleportAnchor"))
         {
             _blockedReticle.SetActive(true);
             _blockedReticle.transform.position = hit.point;
@@ -114,13 +115,24 @@ public class TeleportationManager : MonoBehaviour
 
         _isTeleporting = false; // We've pressed the button. Either we succeed or fail
 
-        // TODO Check if the hit has a teleportation anchor component and if so, rotate to that. otherwise, rotate to the reticle
         Quaternion newRotation = new Quaternion();
-        newRotation.eulerAngles = new Vector3(0, _reticlePrefab.rotation.eulerAngles.y, 0);
+        Vector3 newPosition = new Vector3();
+        // Check if we rotate to the reticle or an anchor
+        if (hit.collider.CompareTag("TeleportArea"))
+        {
+            newRotation.eulerAngles = new Vector3(0, _reticlePrefab.rotation.eulerAngles.y, 0);
+            newPosition = hit.point;
+        }
+        else
+        {
+            // Teleportation anchor
+            newRotation.eulerAngles = new Vector3(0, hit.collider.transform.rotation.eulerAngles.y, 0);
+            newPosition = hit.collider.transform.position;
+        }
 
         TeleportRequest request = new()
         {
-            destinationPosition = hit.point,
+            destinationPosition = newPosition,
             destinationRotation = newRotation,
             matchOrientation = MatchOrientation.TargetUpAndForward
         };
