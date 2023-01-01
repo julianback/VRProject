@@ -11,6 +11,7 @@ public class TeleportationManager : MonoBehaviour
     [SerializeField] private InputActionAsset _actionAsset;
     [SerializeField] private XRRayInteractor _rayInteractor;
     [SerializeField] private GameObject _reticle;
+    [SerializeField] private GameObject _blockedReticle;
     [SerializeField] private TeleportationProvider _teleportationProvider;
 
     private InputAction _thumbstick;
@@ -60,6 +61,12 @@ public class TeleportationManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        _trigger.performed -= OnTeleportActivate;
+        _grip.performed -= OnTeleportCancel;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -83,6 +90,22 @@ public class TeleportationManager : MonoBehaviour
         // The thumbstick is pressed and we are ready to teleport
         _rayInteractor.enabled = true;
 
+        // Check if the destination is valid
+        if (!_rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
+        {
+            return;
+        }
+
+        // Check if the hit is on a teleport area
+        if (!hit.collider.CompareTag("TeleportArea")) // || "TeleportAnchor"
+        {
+            _blockedReticle.SetActive(true);
+            _blockedReticle.transform.position = hit.point;
+            return;
+        }
+        // We have hit a valid teleport area so don't want the blocked reticle
+        _blockedReticle.SetActive(false);
+
         if (!_isTeleporting)
         {
             // The trigger has not been pressed
@@ -90,12 +113,6 @@ public class TeleportationManager : MonoBehaviour
         }
 
         _isTeleporting = false; // We've pressed the button. Either we succeed or fail
-
-        // The trigger has been pressed. Check if the destination is valid
-        if (!_rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit) || !hit.collider.CompareTag("TeleportArea"))
-        {
-            return;
-        }
 
         // TODO Check if the hit has a teleportation anchor component and if so, rotate to that. otherwise, rotate to the reticle
         Quaternion newRotation = new Quaternion();
@@ -131,5 +148,6 @@ public class TeleportationManager : MonoBehaviour
     {
         _rayInteractor.enabled = false;
         _reticle.SetActive(false);
+        _blockedReticle.SetActive(false);
     }
 }

@@ -1431,6 +1431,7 @@ Transform:
   - {fileID: 279294392}
   - {fileID: 111290339}
   - {fileID: 466642467}
+  - {fileID: 1190258688}
   m_Father: {fileID: 465154268}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1711,7 +1712,7 @@ MonoBehaviour:
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 466642466}
-  m_BlockedReticle: {fileID: 0}
+  m_BlockedReticle: {fileID: 1190258684}
   m_StopLineAtFirstRaycastHit: 1
   m_StopLineAtSelection: 0
 --- !u!120 &279294390
@@ -5738,7 +5739,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 279287131}
     m_Modifications:
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
@@ -5748,7 +5749,7 @@ PrefabInstance:
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.123
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
@@ -5758,7 +5759,7 @@ PrefabInstance:
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.674
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
@@ -5795,11 +5796,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2565005812390356542, guid: a3fde713df4d99042a0403c4be9eea32,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ef796c4ae2a0e34ba0cc59b86ee791a, type: 2}
     - target: {fileID: 3177232254315139758, guid: a3fde713df4d99042a0403c4be9eea32,
         type: 3}
       propertyPath: m_Name
-      value: Blocking Teleport Reticle
+      value: Blocked Teleport Reticle
       objectReference: {fileID: 0}
+    - target: {fileID: 6597926611939023800, guid: a3fde713df4d99042a0403c4be9eea32,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ef796c4ae2a0e34ba0cc59b86ee791a, type: 2}
+    - target: {fileID: 8768212848982897536, guid: a3fde713df4d99042a0403c4be9eea32,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ef796c4ae2a0e34ba0cc59b86ee791a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3fde713df4d99042a0403c4be9eea32, type: 3}
 --- !u!1 &1014031373 stripped
@@ -6121,6 +6137,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 1190258684}
   rotationSpeed: 50
+--- !u!4 &1190258688 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2563787388445243513, guid: a3fde713df4d99042a0403c4be9eea32,
+    type: 3}
+  m_PrefabInstance: {fileID: 1000832378}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1209112271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6800,7 +6822,7 @@ Transform:
   m_Children:
   - {fileID: 475195137}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1495554976
 MonoBehaviour:
@@ -8082,6 +8104,7 @@ MonoBehaviour:
     type: 3}
   _rayInteractor: {fileID: 279294387}
   _reticle: {fileID: 466642466}
+  _blockedReticle: {fileID: 1190258684}
   _teleportationProvider: {fileID: 2051581873}
 --- !u!114 &2051581876
 MonoBehaviour:
