@@ -127,7 +127,7 @@ public class TeleportationManager : MonoBehaviour
         {
             // Teleportation anchor
             newRotation.eulerAngles = new Vector3(0, hit.collider.transform.rotation.eulerAngles.y, 0);
-            newPosition = hit.collider.transform.position;
+            newPosition = hit.collider.transform.parent.gameObject.transform.position; // Find the pivot offset
         }
 
         TeleportRequest request = new()
