@@ -1,10 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class TeleportationManager : MonoBehaviour
@@ -14,6 +10,9 @@ public class TeleportationManager : MonoBehaviour
     [SerializeField] private GameObject _reticle;
     [SerializeField] private GameObject _blockedReticle;
     [SerializeField] private TeleportationProvider _teleportationProvider;
+    [SerializeField] private Material _teleportBlue;
+    [SerializeField] private Material _anchorGreen;
+    [SerializeField] private List<Renderer> _reticleRenderers;
 
     private InputAction _thumbstick;
     private InputAction _trigger;
@@ -107,6 +106,21 @@ public class TeleportationManager : MonoBehaviour
         // We have hit a valid teleport area so don't want the blocked reticle
         _blockedReticle.SetActive(false);
 
+        // If an anchor, change the reticle and rotate it to the new rotation
+        if (hit.collider.CompareTag("TeleportAnchor"))
+        {
+            ChangeReticleColour(_anchorGreen);
+            // Align reticle with anchor direction and turn off rotate script
+            _reticlePrefab.transform.rotation = hit.collider.transform.parent.gameObject.transform.rotation;
+            _reticlePrefab.GetComponent<RotateToThumbstick>().enabled = false;
+        }
+        else
+        {
+            // Change it back to blue
+            ChangeReticleColour(_teleportBlue);
+            _reticlePrefab.GetComponent<RotateToThumbstick>().enabled = true;
+        }
+
         if (!_isTeleporting)
         {
             // The trigger has not been pressed
@@ -161,5 +175,13 @@ public class TeleportationManager : MonoBehaviour
         _rayInteractor.enabled = false;
         _reticle.SetActive(false);
         _blockedReticle.SetActive(false);
+    }
+
+    void ChangeReticleColour(Material mat)
+    {
+        foreach (var renderer in _reticleRenderers)
+        {
+            renderer.material = mat;
+        }
     }
 }

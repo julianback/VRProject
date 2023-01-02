@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; // Allows us to get values for the thumbstick
 using UnityEngine.XR.Interaction.Toolkit;
