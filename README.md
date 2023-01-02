@@ -7,4 +7,3 @@ add guns and shooting
 add interactables  
 add draws and advance physics interactions  
 add radial wrist menu with weapons  
-add anchor reticle
